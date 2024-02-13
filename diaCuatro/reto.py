@@ -102,18 +102,29 @@ while(flag):
             flag = False
     # Delete User
     elif(option.lower() == 'd'):
+
         print('List Users')
-        for user in users:
-            print('╔═══ ID ══╦════ NAME ════╦═══ LASTNAME ═══╦════ PHONE ═══╦═══ EMAIL ════╗')
-            print('║  ',user['id'], ' ║  ', user['name'], ' ║  ', user['lastname'], ' ║  ', user['phone'], ' ║ ', user['email'], ' ║')
-            print('╚═══════════════════════════════════════════════════════════════════════╝')
+        print('╔═══ ID ══╦════ NAME ════╦═══ LASTNAME ═══╦════ PHONE ═══╦═══ EMAIL ════╗')
+        
+        if(len(users) == 0):
+            print('║                             Not found users                           ║')
+        else:
+            for user in users:
+                print('║  ',user['id'], ' ║  ', user['name'], ' ║  ', user['lastname'], ' ║  ', user['phone'], ' ║ ', user['email'], ' ║')
+        
+        print('╚═══════════════════════════════════════════════════════════════════════╝')
+        
+        if(len(users) >=1):
             id_user_delete = int(input('Enter ID User to delete: '))
+            flag_user_search = False
             for user in users:
                 if(user['id'] == id_user_delete):
                     users.remove(user)
+                    flag_user_search = True
 
-            print('Congratulations, Remove user 🍨')
-
-            new_flag_delete = input('Return to the Menu? Y/N: ')
-            if(new_flag_delete.lower() == 'n'):
-                flag = false
+            if(flag_user_search == True):
+                print('🍾 Congratulations, Delete user: ', id_user_delete, ' 🍨')
+        
+        new_flag_delete = input('Return to the Menu? Y/N: ')
+        if(new_flag_delete.lower() == 'n'):
+            flag = False
